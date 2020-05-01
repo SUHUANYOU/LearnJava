@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.hos.dao.CategoryDao">
+    <resultMap id="resultMap" type="Category">
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="name" column="name" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <insert id="insert" parameterType="Category" useGeneratedKeys="true">
+        insert into Category(name,create_time,update_time) value (#{name},#{createTime},#{updateTime})
+    </insert>
+    <delete id="delete" parameterType="Integer">
+        delete from Category where id=#{id}
+    </delete>
+    <update id="update" parameterType="Category">
+        update Category set name=#{name},update_time=#{updateTime} where id=#{id}
+    </update>
+    <select id="selectById" parameterType="Integer" resultMap="resultMap">
+        select * from Category where id=#{id}
+    </select>
+    <select id="selectAll" resultMap="resultMap">
+        select * from Category
+    </select>
+</mapper>
